@@ -62,6 +62,7 @@ module Handicraft
       table_options = {
         :has_header => true,
         :has_row_info => false,
+        :caption => "",
         :id => nil,
         :class_name => "auto"
       }.merge(table_options)
@@ -69,6 +70,11 @@ module Handicraft
       table_tag_options = table_options[:id] ? { :id => table_options[:id], :class => table_options[:class_name] } : { :class => table_options[:class_name] }
 
       table = TagNode.new('table', table_tag_options)
+      
+      if table_options[:caption] != ""
+        table << caption = TagNode.new(:caption)
+      end
+      
       if table_options[:has_header] == true
         table << thead = TagNode.new(:thead)
         thead << tr = TagNode.new(:tr, :class => 'odd')
