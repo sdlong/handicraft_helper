@@ -71,8 +71,9 @@ module Handicraft
 
       table = TagNode.new('table', table_tag_options)
       
-      if table_options[:caption] != ""
+      if !table_options[:caption].blank?
         table << caption = TagNode.new(:caption)
+        caption << table_options[:caption]
       end
       
       if table_options[:has_header] == true
