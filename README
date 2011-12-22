@@ -4,12 +4,4 @@ Licensed under the MIT: http://www.opensource.org/licenses/mit-license.php
 
 handicraft_helper is some lovely Rails helper
 
-USAGE:
-
-in your application_controller.rb
-
-class ApplicationController < ActionController::Base
-  
-  helper Handicraft::Helper
-  
-end
+Compatible with Ruby 1.9 & Rails 3.1.x

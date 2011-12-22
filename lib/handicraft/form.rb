@@ -20,8 +20,10 @@ module Handicraft
         div = Handicraft::Helper::TagNode.new("div", :class=> "col")        
         
         options[:class] = case name
-          when "text_field" : 'field text'
-          when "text_area" : 'field textarea'
+          when "text_field"
+            'field text'
+          when "text_area"
+            'field textarea'
           #when "select" : 'field select'
           #when "date_select" : 'field select'
           #when "datetime_select" : 'field select'
