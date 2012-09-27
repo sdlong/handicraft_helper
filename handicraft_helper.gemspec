@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.name          = "handicraft_helper"
   gem.require_paths = ["lib"]
-  gem.version       = "1.1.0"
+  gem.version       = Handicraft::Rails::VERSION
 
   gem.add_dependency "railties", "~> 3.0"
   gem.add_dependency "thor",     "~> 0.14"
