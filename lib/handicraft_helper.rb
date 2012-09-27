@@ -1,5 +1,3 @@
-require "version"
-
 module Handicraft
   module Rails
     if ::Rails.version < "3.1"
