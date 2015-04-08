@@ -70,12 +70,12 @@ module Handicraft
       table_tag_options = table_options[:id] ? { :id => table_options[:id], :class => table_options[:class_name] } : { :class => table_options[:class_name] }
 
       table = TagNode.new('table', table_tag_options)
-      
+
       if !table_options[:caption].blank?
         table << caption = TagNode.new(:caption)
         caption << table_options[:caption]
       end
-      
+
       if table_options[:has_header] == true
         table << thead = TagNode.new(:thead)
         thead << tr = TagNode.new(:tr, :class => 'odd')
@@ -120,7 +120,16 @@ module Handicraft
 
       yield(list) if block_given?
 
-      ul = TagNode.new('ul', :id => options[:id], :class => options[:class] )
+      list_type ||= "ul"
+
+      if options[:type]
+        if ["ul", "dl", "ol"].include?(options[:type])
+          list_type = options[:type]
+        end
+      end
+
+      ul = TagNode.new(list_type, :id => options[:id], :class => options[:class] )
+      ul.addClass("unstyled") if (options[:type] && options[:type] == "unstyled")
 
       list.each_with_index do |content, i|
         item_class = []
@@ -140,9 +149,10 @@ module Handicraft
         end
 
         link = item_content.match(/href=(["'])(.*?)(\1)/)[2] rescue nil
+        current = request.fullpath
 
-        if ( link && current_page?(link) ) || ( @current && @current.include?(link) )
-          item_class << "current"
+        if ( link && current_page?(link) ) || ( current && current.include?(link) )
+          item_class << "active"
         end
 
         item_class = (item_class.empty?)? nil : item_class.join(" ")
